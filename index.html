@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elira & Arben | Dasma Jonë</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-ornament">❧</div>
+            <div class="preloader-names">
+                <span class="preloader-letter">E</span>
+                <span class="preloader-ampersand">&</span>
+                <span class="preloader-letter">A</span>
+            </div>
+            <div class="preloader-text">Ju ftojmë...</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="nav-logo-text">E & A</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#details" class="nav-link" data-text="Detajet">Detajet</a></li>
+                <li><a href="#venue" class="nav-link" data-text="Vendi">Vendi</a></li>
+                <li><a href="#gallery" class="nav-link" data-text="Galeria">Galeria</a></li>
+                <li><a href="#schedule" class="nav-link" data-text="Programi">Programi</a></li>
+                <li><a href="#rsvp" class="nav-link nav-link-cta" data-text="Konfirmo">Konfirmo</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-list">
+            <li><a href="#details">Detajet</a></li>
+            <li><a href="#venue">Vendi</a></li>
+            <li><a href="#gallery">Galeria</a></li>
+            <li><a href="#schedule">Programi</a></li>
+            <li><a href="#rsvp">Konfirmo Pjesëmarrjen</a></li>
+        </ul>
+    </div>
+
+    <!-- Vertical Text Decoration -->
+    <div class="vertical-text vertical-text-left">
+        <span>D</span><span>A</span><span>S</span><span>M</span><span>A</span>
+    </div>
+    <div class="vertical-text vertical-text-right">
+        <span>2</span><span>0</span><span>2</span><span>5</span>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <main id="main-content">
+
+            <!-- Hero Section -->
+            <section class="hero" id="hero">
+                <div class="hero-background">
+                    <div class="hero-image parallax-bg" data-speed="0.3">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80" alt="Elegant Wedding">
+                        <div class="hero-overlay"></div>
+                    </div>
+                </div>
+                <div class="hero-content">
+                    <div class="hero-ornament reveal-element">❧</div>
+                    <p class="hero-subtitle split-text">Ju ftojmë në dasmën tonë</p>
+                    <h1 class="hero-title">
+                        <span class="hero-name split-text" data-delay="0.2">Elira</span>
+                        <span class="hero-ampersand split-text" data-delay="0.4">&</span>
+                        <span class="hero-name split-text" data-delay="0.6">Arben</span>
+                    </h1>
+                    <div class="hero-date reveal-element" data-delay="0.8">
+                        <span class="hero-date-day">15</span>
+                        <span class="hero-date-month">Gusht</span>
+                        <span class="hero-date-year">2025</span>
+                    </div>
+                    <div class="hero-scroll reveal-element" data-delay="1">
+                        <span>Zbrit poshtë</span>
+                        <div class="scroll-indicator">
+                            <div class="scroll-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Intro Section - Like Jägerhof -->
+            <section class="intro-section" id="intro">
+                <!-- Floating Images that appear on hover -->
+                <div class="intro-images">
+                    <div class="intro-image" data-hover="historia">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="Historia jonë">
+                    </div>
+                    <div class="intro-image" data-hover="ceremonia">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Ceremonia">
+                    </div>
+                    <div class="intro-image" data-hover="festa">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80" alt="Festa">
+                    </div>
+                    <div class="intro-image" data-hover="dashuria">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&q=80" alt="Dashuria">
+                    </div>
+                </div>
+
+                <div class="intro-content">
+                    <h2 class="intro-headline">
+                        <span class="intro-line reveal-mask">Përjetoni magjinë e</span>
+                    </h2>
+                    <div class="intro-links">
+                        <a href="#details" class="intro-link" data-image="historia">
+                            <span class="intro-link-text">ceremonisë</span>
+                            <span class="intro-link-arrow">→</span>
+                        </a>
+                        <span class="intro-connector">dhe</span>
+                        <a href="#venue" class="intro-link" data-image="ceremonia">
+                            <span class="intro-link-text">festës</span>
+                            <span class="intro-link-arrow">→</span>
+                        </a>
+                        <span class="intro-connector">tonë</span>
+                        <a href="#gallery" class="intro-link" data-image="festa">
+                            <span class="intro-link-text">plot dashuri</span>
+                            <span class="intro-link-arrow">→</span>
+                        </a>
+                        <span class="intro-connector">&</span>
+                        <a href="#rsvp" class="intro-link" data-image="dashuria">
+                            <span class="intro-link-text">kujtime</span>
+                            <span class="intro-link-arrow">→</span>
+                        </a>
+                    </div>
+                    <div class="intro-date-display">
+                        <div class="intro-date-ornament">✦</div>
+                        <span class="intro-date-text">15.08.2025</span>
+                        <div class="intro-date-ornament">✦</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Horizontal Scroll Photo Section (Like Verantwortung aus Überzeugung) -->
+            <section class="horizontal-scroll-section" id="horizontal-scroll">
+                <div class="horizontal-scroll-container">
+                    <!-- Pinned Image that stays while text scrolls -->
+                    <div class="pinned-image-wrapper">
+                        <div class="pinned-image">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80" alt="Wedding moment" class="pinned-img" id="pinnedImg1">
+                            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80" alt="Couple photo" class="pinned-img" id="pinnedImg2">
+                            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&q=80" alt="Love" class="pinned-img" id="pinnedImg3">
+                        </div>
+                    </div>
+
+                    <!-- Scrolling Text Panels -->
+                    <div class="scroll-text-panels">
+                        <div class="scroll-panel" data-image="1">
+                            <div class="scroll-panel-content">
+                                <span class="scroll-panel-number">01</span>
+                                <h3 class="scroll-panel-title">Dashuria Jonë</h3>
+                                <p class="scroll-panel-text">Një histori që filloi me një shikim dhe u bë përjetësi. Çdo moment i kaluar së bashku na ka afruar më shumë.</p>
+                            </div>
+                        </div>
+                        <div class="scroll-panel" data-image="2">
+                            <div class="scroll-panel-content">
+                                <span class="scroll-panel-number">02</span>
+                                <h3 class="scroll-panel-title">Rrugëtimi Ynë</h3>
+                                <p class="scroll-panel-text">Nga takimi i parë deri te propozimi, çdo hap na ka sjellë këtu - gati për të filluar një kapitull të ri së bashku.</p>
+                            </div>
+                        </div>
+                        <div class="scroll-panel" data-image="3">
+                            <div class="scroll-panel-content">
+                                <span class="scroll-panel-number">03</span>
+                                <h3 class="scroll-panel-title">E Ardhmja Jonë</h3>
+                                <p class="scroll-panel-text">Me zemra plot dashuri dhe ëndrra të mëdha, mezi presim të ndajmë këtë ditë të veçantë me ju.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Indicator -->
+                <div class="scroll-progress">
+                    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+                </div>
+            </section>
+
+            <!-- Quote Section with Parallax -->
+            <section class="quote-section parallax-section">
+                <div class="parallax-bg" data-speed="0.5">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1920&q=80" alt="Romantic landscape">
+                    <div class="quote-overlay"></div>
+                </div>
+                <div class="quote-content">
+                    <div class="quote-ornament reveal-element">❝</div>
+                    <blockquote class="quote-text split-text">
+                        Dashuria nuk është të shikosh njëri-tjetrin, por të shikosh së bashku në të njëjtin drejtim.
+                    </blockquote>
+                    <cite class="quote-author reveal-element">— Antoine de Saint-Exupéry</cite>
+                </div>
+            </section>
+
+            <!-- Details Section -->
+            <section class="details-section" id="details">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag reveal-element">Informacioni</span>
+                        <h2 class="section-title split-text">Detajet e Dasmës</h2>
+                        <div class="section-line reveal-element"></div>
+                    </div>
+
+                    <div class="details-grid">
+                        <!-- Ceremony Card -->
+                        <div class="detail-card reveal-element card-lift" data-delay="0">
+                            <div class="detail-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <h3 class="detail-card-title">Ceremonia</h3>
+                            <div class="detail-card-info">
+                                <p class="detail-card-time">Ora 14:00</p>
+                                <p class="detail-card-place">Kisha e Shën Marisë</p>
+                                <p class="detail-card-address">Rruga e Kishës, Nr. 12<br>Tiranë, Shqipëri</p>
+                            </div>
+                            <a href="#venue" class="detail-card-btn btn-hover-fill">
+                                <span>Shiko Hartën</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Reception Card -->
+                        <div class="detail-card reveal-element card-lift" data-delay="0.2">
+                            <div class="detail-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="detail-card-title">Pritja</h3>
+                            <div class="detail-card-info">
+                                <p class="detail-card-time">Ora 18:00</p>
+                                <p class="detail-card-place">Villa Rozafa</p>
+                                <p class="detail-card-address">Rruga e Liqenit, Nr. 45<br>Tiranë, Shqipëri</p>
+                            </div>
+                            <a href="#venue" class="detail-card-btn btn-hover-fill">
+                                <span>Shiko Hartën</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Dress Code Card -->
+                        <div class="detail-card reveal-element card-lift" data-delay="0.4">
+                            <div class="detail-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <h3 class="detail-card-title">Veshja</h3>
+                            <div class="detail-card-info">
+                                <p class="detail-card-time">Kodi i Veshjes</p>
+                                <p class="detail-card-place">Elegant & Festiv</p>
+                                <p class="detail-card-address">Ngjyrat e preferuara:<br>Blu, Jeshile, Bordo</p>
+                            </div>
+                            <div class="dress-code-colors">
+                                <span class="color-dot" style="background: #1a365d;"></span>
+                                <span class="color-dot" style="background: #234e52;"></span>
+                                <span class="color-dot" style="background: #742a2a;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Venue Section -->
+            <section class="venue-section" id="venue">
+                <div class="venue-split">
+                    <div class="venue-image-side">
+                        <div class="venue-image parallax-bg hover-zoom" data-speed="0.2">
+                            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=80" alt="Villa Rozafa">
+                        </div>
+                    </div>
+                    <div class="venue-content-side">
+                        <div class="venue-content">
+                            <span class="section-tag reveal-element">Lokacioni</span>
+                            <h2 class="section-title split-text">Villa Rozafa</h2>
+                            <p class="venue-description reveal-element">
+                                E vendosur në zemër të natyrës shqiptare, Villa Rozafa ofron një ambient magjik për festën tonë të dasmës. Me kopshtin e saj të bukur dhe pamjet e mrekullueshme, ky vend do të jetë sfondi perfekt për fillimin e jetës sonë të re së bashku.
+                            </p>
+                            <div class="venue-features reveal-element">
+                                <div class="venue-feature">
+                                    <span class="feature-icon">✦</span>
+                                    <span>Kopshte të Bukura</span>
+                                </div>
+                                <div class="venue-feature">
+                                    <span class="feature-icon">✦</span>
+                                    <span>Pamje Panoramike</span>
+                                </div>
+                                <div class="venue-feature">
+                                    <span class="feature-icon">✦</span>
+                                    <span>Parking Privat</span>
+                                </div>
+                            </div>
+                            <a href="https://maps.google.com" target="_blank" rel="noopener" class="venue-btn btn-hover-fill reveal-element">
+                                <span>Hap në Google Maps</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section class="gallery-section" id="gallery">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag reveal-element">Kujtimet</span>
+                        <h2 class="section-title split-text">Galeria Jonë</h2>
+                        <div class="section-line reveal-element"></div>
+                    </div>
+
+                    <div class="gallery-grid">
+                        <div class="gallery-item gallery-item-large reveal-element hover-zoom">
+                            <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80" alt="Couple photo 1">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon">+</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item reveal-element hover-zoom" data-delay="0.1">
+                            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt="Couple photo 2">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon">+</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item reveal-element hover-zoom" data-delay="0.2">
+                            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt="Couple photo 3">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon">+</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item reveal-element hover-zoom" data-delay="0.3">
+                            <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80" alt="Couple photo 4">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon">+</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item gallery-item-large reveal-element hover-zoom" data-delay="0.4">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80" alt="Couple photo 5">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon">+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section class="schedule-section" id="schedule">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag reveal-element">Programi</span>
+                        <h2 class="section-title split-text">Programi i Ditës</h2>
+                        <div class="section-line reveal-element"></div>
+                    </div>
+
+                    <div class="schedule-timeline">
+                        <div class="schedule-line"></div>
+
+                        <div class="schedule-item reveal-element" data-delay="0">
+                            <div class="schedule-time">14:00</div>
+                            <div class="schedule-dot"></div>
+                            <div class="schedule-content">
+                                <h4>Ceremonia e Kurorëzimit</h4>
+                                <p>Kisha e Shën Marisë</p>
+                            </div>
+                        </div>
+
+                        <div class="schedule-item reveal-element" data-delay="0.1">
+                            <div class="schedule-time">15:30</div>
+                            <div class="schedule-dot"></div>
+                            <div class="schedule-content">
+                                <h4>Sesioni Fotografik</h4>
+                                <p>Kopshti i Vilës</p>
+                            </div>
+                        </div>
+
+                        <div class="schedule-item reveal-element" data-delay="0.2">
+                            <div class="schedule-time">18:00</div>
+                            <div class="schedule-dot"></div>
+                            <div class="schedule-content">
+                                <h4>Koktej Mirëseardhje</h4>
+                                <p>Taraca e Vilës</p>
+                            </div>
+                        </div>
+
+                        <div class="schedule-item reveal-element" data-delay="0.3">
+                            <div class="schedule-time">19:00</div>
+                            <div class="schedule-dot"></div>
+                            <div class="schedule-content">
+                                <h4>Darka Festive</h4>
+                                <p>Salla Kryesore</p>
+                            </div>
+                        </div>
+
+                        <div class="schedule-item reveal-element" data-delay="0.4">
+                            <div class="schedule-time">21:00</div>
+                            <div class="schedule-dot"></div>
+                            <div class="schedule-content">
+                                <h4>Vali i Parë & Festa</h4>
+                                <p>Pista e Vallëzimit</p>
+                            </div>
+                        </div>
+
+                        <div class="schedule-item reveal-element" data-delay="0.5">
+                            <div class="schedule-time">23:00</div>
+                            <div class="schedule-dot"></div>
+                            <div class="schedule-content">
+                                <h4>Prerja e Tortës</h4>
+                                <p>Salla Kryesore</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RSVP Section -->
+            <section class="rsvp-section" id="rsvp">
+                <div class="rsvp-background">
+                    <div class="parallax-bg" data-speed="0.3">
+                        <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=1920&q=80" alt="Elegant background">
+                        <div class="rsvp-overlay"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="rsvp-content">
+                        <div class="section-header">
+                            <span class="section-tag reveal-element">Na Bashkohuni</span>
+                            <h2 class="section-title split-text">Konfirmoni Pjesëmarrjen</h2>
+                            <p class="rsvp-subtitle reveal-element">Ju lutemi konfirmoni pjesëmarrjen tuaj deri më 1 Korrik 2025</p>
+                        </div>
+
+                        <form class="rsvp-form reveal-element" id="rsvpForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Emri i Plotë *</label>
+                                    <input type="text" id="name" name="name" required class="form-input">
+                                    <span class="input-line"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required class="form-input">
+                                    <span class="input-line"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Numri i Telefonit</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input">
+                                    <span class="input-line"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="guests">Numri i Mysafirëve</label>
+                                    <select id="guests" name="guests" class="form-input">
+                                        <option value="1">1 Person</option>
+                                        <option value="2">2 Persona</option>
+                                        <option value="3">3 Persona</option>
+                                        <option value="4">4 Persona</option>
+                                    </select>
+                                    <span class="input-line"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label>A do të merrni pjesë? *</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="attendance" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        <span>Po, do të jem aty!</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="attendance" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        <span>Na vjen keq, nuk mundemi</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label for="dietary">Kërkesa të Veçanta për Ushqimin</label>
+                                <textarea id="dietary" name="dietary" class="form-input form-textarea" rows="3" placeholder="Na tregoni nëse keni alergji ose preferenca të veçanta..."></textarea>
+                                <span class="input-line"></span>
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label for="message">Një Mesazh për Çiftin</label>
+                                <textarea id="message" name="message" class="form-input form-textarea" rows="4" placeholder="Ndani urimet tuaja me ne..."></textarea>
+                                <span class="input-line"></span>
+                            </div>
+
+                            <button type="submit" class="rsvp-submit btn-hover-fill">
+                                <span>Dërgo Konfirmimin</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <div class="rsvp-success" id="rsvpSuccess">
+                            <div class="success-icon">✓</div>
+                            <h3>Faleminderit!</h3>
+                            <p>Konfirmimi juaj u dërgua me sukses. Mezi presim t'ju shohim!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gift Section - Jägerhof Style -->
+            <section class="gift-section-new">
+                <div class="gift-new-container">
+                    <div class="gift-new-content">
+                        <h2 class="gift-new-title">
+                            <span class="gift-title-line gift-title-serif">Për dhuratat,</span>
+                            <span class="gift-title-line gift-title-script">me dashuri.</span>
+                        </h2>
+
+                        <div class="gift-right-content">
+                            <p class="gift-description">Prania juaj është dhurata më e çmuar për ne. Nëse dëshironi të kontribuoni për muajin tonë të mjaltit:</p>
+
+                            <div class="gift-bank-details">
+                                <div class="gift-bank-row">
+                                    <span class="gift-label">Banka</span>
+                                    <span class="gift-value">Banka Kombëtare Tregtare</span>
+                                </div>
+                                <div class="gift-bank-row">
+                                    <span class="gift-label">IBAN</span>
+                                    <span class="gift-value">AL47 2121 1009 0000 0002 3569 8741</span>
+                                </div>
+                                <div class="gift-bank-row">
+                                    <span class="gift-label">Përfituesi</span>
+                                    <span class="gift-value">Elira & Arben</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-ornament">❧</div>
+                    <h2 class="footer-names split-text">Elira & Arben</h2>
+                    <p class="footer-date reveal-element">15 Gusht 2025</p>
+                    <p class="footer-message reveal-element">Mezi presim t'ju shohim!</p>
+                    <div class="footer-hearts">
+                        <span>♥</span>
+                        <span>♥</span>
+                        <span>♥</span>
+                    </div>
+                    <div class="footer-social reveal-element">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <circle cx="12" cy="12" r="4"/>
+                                <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="footer-copyright">
+                        #EliraArben2025
+                    </p>
+                </div>
+            </footer>
+
+    </main>
+
+    <!-- Sticky RSVP Button -->
+    <a href="#rsvp" class="sticky-rsvp btn-hover-fill" id="stickyRsvp">
+        <span>Konfirmo</span>
+    </a>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/355691234567?text=Përshëndetje!%20Doja%20të%20konfirmoj%20pjesëmarrjen%20në%20dasmën%20tuaj." class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contact via WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Cursor Follower (Desktop) -->
+    <div class="cursor-follower" id="cursorFollower">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
