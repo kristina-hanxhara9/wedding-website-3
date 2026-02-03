@@ -5,13 +5,13 @@
 
 /* CSS Custom Properties */
 :root {
-    /* Colors - Elegant & Romantic */
-    --color-primary: #8b7355;
-    --color-primary-light: #a08b6e;
-    --color-primary-dark: #6d5a44;
+    /* Colors - Elegant & Romantic Purple */
+    --color-primary: #7c5295;
+    --color-primary-light: #9b6fb5;
+    --color-primary-dark: #5d3d70;
     --color-secondary: #2c3e50;
-    --color-accent: #c9a87c;
-    --color-gold: #d4af37;
+    --color-accent: #9b6fb5;
+    --color-gold: #8b5da5;
 
     /* Neutrals */
     --color-white: #ffffff;
@@ -2013,7 +2013,7 @@ select.form-input {
 .gift-title-serif {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 400;
-    color: #2d5a47;
+    color: #7c5295;
     margin-bottom: 0.2em;
     opacity: 0;
     transform: translateY(30px);
@@ -2023,7 +2023,7 @@ select.form-input {
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-style: italic;
     font-weight: 300;
-    color: #2d5a47;
+    color: #7c5295;
     opacity: 0;
     transform: translateY(30px);
 }
@@ -2065,7 +2065,7 @@ select.form-input {
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #2d5a47;
+    color: #7c5295;
     min-width: 90px;
     flex-shrink: 0;
 }
