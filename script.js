@@ -387,12 +387,15 @@ function animateHero() {
     gsap.set('.hero-date', { opacity: 0, y: 30 });
     gsap.set('.hero-scroll', { opacity: 0, y: 20 });
 
-    // Animate hero image
-    gsap.to('.hero-image img', {
-        scale: 1,
-        duration: 2,
-        ease: 'power2.out'
-    });
+    // Animate hero video (if exists)
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+        gsap.to(heroVideo, {
+            scale: 1,
+            duration: 2,
+            ease: 'power2.out'
+        });
+    }
 }
 
 // ============================================
@@ -980,21 +983,29 @@ function initHorizontalScrollSection() {
 
     if (!section || !panels.length) return;
 
-    // Set first panel and image as active
+    // Initialize all images to be hidden except the first one
+    pinnedImages.forEach((img, index) => {
+        if (index === 0) {
+            gsap.set(img, { opacity: 1, scale: 1, zIndex: 10 });
+            img.classList.add('active');
+        } else {
+            gsap.set(img, { opacity: 0, scale: 1.1, zIndex: 1 });
+            img.classList.remove('active');
+        }
+    });
+
+    // Set first panel as active
     panels[0].classList.add('active');
-    if (pinnedImages[0]) {
-        pinnedImages[0].classList.add('active');
-        gsap.set(pinnedImages[0], { opacity: 1, scale: 1 });
-    }
 
     // Function to switch images with GSAP animation
-    function switchToImage(targetImage) {
+    function switchToImage(targetImage, targetIndex) {
         // Fade out all images
-        pinnedImages.forEach(img => {
+        pinnedImages.forEach((img, index) => {
             if (img !== targetImage) {
                 gsap.to(img, {
                     opacity: 0,
                     scale: 1.1,
+                    zIndex: 1,
                     duration: 0.6,
                     ease: 'power2.inOut'
                 });
@@ -1007,6 +1018,7 @@ function initHorizontalScrollSection() {
             gsap.to(targetImage, {
                 opacity: 1,
                 scale: 1,
+                zIndex: 10,
                 duration: 0.8,
                 ease: 'power2.out'
             });
@@ -1029,7 +1041,7 @@ function initHorizontalScrollSection() {
                 panel.classList.add('active');
 
                 // Switch image
-                switchToImage(targetImage);
+                switchToImage(targetImage, index);
             },
             onEnterBack: () => {
                 // Remove active from all panels
@@ -1037,7 +1049,7 @@ function initHorizontalScrollSection() {
                 panel.classList.add('active');
 
                 // Switch image
-                switchToImage(targetImage);
+                switchToImage(targetImage, index);
             }
         });
     });

@@ -906,6 +906,20 @@ button {
     height: 100%;
     object-fit: cover;
     transform: scale(1.05);
+    pointer-events: none;
+}
+
+/* Hide video controls and play button */
+.hero-video::-webkit-media-controls {
+    display: none !important;
+}
+
+.hero-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
+.hero-video::-webkit-media-controls-play-button {
+    display: none !important;
 }
 
 .hero-overlay {
@@ -1771,8 +1785,8 @@ button {
     height: 100%;
     background: linear-gradient(
         to bottom,
-        rgba(250, 248, 245, 0.95) 0%,
-        rgba(250, 248, 245, 0.9) 100%
+        rgba(250, 248, 245, 0.7) 0%,
+        rgba(250, 248, 245, 0.6) 100%
     );
 }
 
