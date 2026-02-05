@@ -854,14 +854,17 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
+    background: #0a0a0a;
 }
 
 .hero-video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transform: scale(1.05);
+    object-fit: contain;
     pointer-events: none;
 }
 
@@ -1247,60 +1250,55 @@ button {
 
 .quote-section {
     position: relative;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--color-primary-dark);
-    padding: clamp(4rem, 8vw, 8rem) var(--container-padding);
 }
 
-/* Centered video container — keeps natural aspect ratio */
-.quote-video-centered {
-    position: relative;
+/* Full-width background video */
+.quote-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 900px;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    height: 100%;
+    z-index: 0;
 }
 
-.quote-video-centered video {
-    display: block;
+.quote-video-bg video {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     pointer-events: none;
 }
 
-.quote-video-centered video::-webkit-media-controls {
+.quote-video-bg video::-webkit-media-controls {
     display: none !important;
 }
 
-/* Soft dark overlay so text is readable */
-.quote-video-overlay {
+/* Dark overlay for readability */
+.quote-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    pointer-events: none;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
-/* Text sits on top of the video */
+/* Text content centered over video */
 .quote-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: clamp(2rem, 4vw, 4rem);
+    padding: clamp(4rem, 8vw, 8rem) var(--container-padding);
     color: var(--color-white);
 }
 
