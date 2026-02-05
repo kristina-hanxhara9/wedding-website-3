@@ -971,105 +971,37 @@ document.addEventListener('mousedown', () => {
 });
 
 // ============================================
-// HORIZONTAL SCROLL SECTION (Verantwortung Style)
+// PHOTO STORY SECTION
 // ============================================
 
 function initHorizontalScrollSection() {
-    const section = document.querySelector('.horizontal-scroll-section');
-    const panels = document.querySelectorAll('.scroll-panel');
-    const pinnedImages = document.querySelectorAll('.pinned-img');
-    const progressBar = document.getElementById('scrollProgressBar');
-    const progressContainer = document.querySelector('.scroll-progress');
+    const panels = document.querySelectorAll('.photo-story-panel');
+    if (!panels.length) return;
 
-    if (!section || !panels.length || !pinnedImages.length) return;
+    panels.forEach((panel) => {
+        const image = panel.querySelector('.photo-story-image');
+        const number = panel.querySelector('.photo-story-number');
+        const title = panel.querySelector('.photo-story-title');
+        const text = panel.querySelector('.photo-story-text');
 
-    // Track current active image index
-    let currentImageIndex = 0;
-
-    // Set initial state: first image visible, rest hidden
-    pinnedImages.forEach((img, i) => {
-        if (i === 0) {
-            img.style.opacity = '1';
-            img.style.zIndex = '10';
-        } else {
-            img.style.opacity = '0';
-            img.style.zIndex = '1';
-        }
-    });
-
-    panels[0].classList.add('active');
-
-    // Reliable image switch using direct style manipulation
-    function switchToImage(newIndex) {
-        if (newIndex === currentImageIndex) return;
-        if (newIndex < 0 || newIndex >= pinnedImages.length) return;
-
-        // Hide ALL images first
-        pinnedImages.forEach((img, i) => {
-            img.style.opacity = '0';
-            img.style.zIndex = '1';
-        });
-
-        // Show the target image
-        pinnedImages[newIndex].style.opacity = '1';
-        pinnedImages[newIndex].style.zIndex = '10';
-
-        currentImageIndex = newIndex;
-    }
-
-    // Use IntersectionObserver instead of ScrollTrigger for reliability
-    // This works regardless of sticky positioning, Lenis, or layout mode
-    const observerOptions = {
-        root: null, // viewport
-        rootMargin: '-40% 0px -40% 0px', // trigger when panel is in the middle 20% of viewport
-        threshold: 0
-    };
-
-    const panelObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const panel = entry.target;
-                const index = Array.from(panels).indexOf(panel);
-
-                // Activate panel
-                panels.forEach(p => p.classList.remove('active'));
-                panel.classList.add('active');
-
-                // Switch image
-                switchToImage(index);
-            }
-        });
-    }, observerOptions);
-
-    // Observe all panels
-    panels.forEach(panel => {
-        panelObserver.observe(panel);
-    });
-
-    // Progress bar animation (keep using ScrollTrigger for this)
-    if (progressContainer) {
-        ScrollTrigger.create({
-            trigger: section,
-            start: 'top top',
-            end: 'bottom bottom',
-            onEnter: () => progressContainer.classList.add('visible'),
-            onLeave: () => progressContainer.classList.remove('visible'),
-            onEnterBack: () => progressContainer.classList.add('visible'),
-            onLeaveBack: () => progressContainer.classList.remove('visible'),
-            onUpdate: (self) => {
-                if (progressBar) {
-                    progressBar.style.width = `${self.progress * 100}%`;
+        // Animate image with clip-path reveal
+        if (image) {
+            gsap.fromTo(image,
+                { clipPath: 'inset(0 100% 0 0)' },
+                {
+                    clipPath: 'inset(0 0% 0 0)',
+                    duration: 1.2,
+                    ease: 'power3.inOut',
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: 'top 70%',
+                        once: true
+                    }
                 }
-            }
-        });
-    }
+            );
+        }
 
-    // Animate panel content on scroll
-    panels.forEach((panel, index) => {
-        const number = panel.querySelector('.scroll-panel-number');
-        const title = panel.querySelector('.scroll-panel-title');
-        const text = panel.querySelector('.scroll-panel-text');
-
+        // Animate text content
         const elements = [number, title, text].filter(Boolean);
         if (elements.length) {
             gsap.fromTo(elements,
@@ -1079,10 +1011,11 @@ function initHorizontalScrollSection() {
                     y: 0,
                     duration: 0.8,
                     stagger: 0.15,
+                    delay: 0.3,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: panel,
-                        start: 'top 70%',
+                        start: 'top 60%',
                         once: true
                     }
                 }
@@ -1532,13 +1465,13 @@ function initGiftSection() {
 }
 
 // ============================================
-// HORIZONTAL SCROLL PANEL NUMBER ANIMATION
+// PHOTO STORY NUMBER PULSE
 // ============================================
 
-// Pulse effect on panel numbers
+// Subtle pulse on photo story numbers
 setInterval(() => {
-    const panelNumbers = document.querySelectorAll('.scroll-panel.active .scroll-panel-number');
-    panelNumbers.forEach((num) => {
+    const storyNumbers = document.querySelectorAll('.photo-story-number');
+    storyNumbers.forEach((num) => {
         gsap.to(num, {
             scale: 1.05,
             opacity: 0.5,
