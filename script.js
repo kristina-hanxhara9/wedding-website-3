@@ -981,75 +981,82 @@ function initHorizontalScrollSection() {
     const progressBar = document.getElementById('scrollProgressBar');
     const progressContainer = document.querySelector('.scroll-progress');
 
-    if (!section || !panels.length) return;
+    if (!section || !panels.length || !pinnedImages.length) return;
 
-    // Initialize all images to be hidden except the first one
-    pinnedImages.forEach((img, index) => {
-        if (index === 0) {
-            gsap.set(img, { opacity: 1, scale: 1, zIndex: 10 });
+    // Track current active image index
+    let currentImageIndex = 0;
+
+    // Force set initial state - first image visible, rest hidden
+    pinnedImages.forEach((img, i) => {
+        img.style.position = 'absolute';
+        img.style.top = '0';
+        img.style.left = '0';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        if (i === 0) {
+            img.style.opacity = '1';
+            img.style.transform = 'scale(1)';
+            img.style.zIndex = '10';
             img.classList.add('active');
         } else {
-            gsap.set(img, { opacity: 0, scale: 1.1, zIndex: 1 });
+            img.style.opacity = '0';
+            img.style.transform = 'scale(1.1)';
+            img.style.zIndex = '1';
             img.classList.remove('active');
         }
     });
 
-    // Set first panel as active
     panels[0].classList.add('active');
 
-    // Function to switch images with GSAP animation
-    function switchToImage(targetImage, targetIndex) {
-        // Fade out all images
-        pinnedImages.forEach((img, index) => {
-            if (img !== targetImage) {
-                gsap.to(img, {
-                    opacity: 0,
-                    scale: 1.1,
-                    zIndex: 1,
-                    duration: 0.6,
-                    ease: 'power2.inOut'
-                });
-                img.classList.remove('active');
+    // Function to switch images
+    function switchToImage(newIndex) {
+        if (newIndex === currentImageIndex) return;
+        if (newIndex < 0 || newIndex >= pinnedImages.length) return;
+
+        const oldImage = pinnedImages[currentImageIndex];
+        const newImage = pinnedImages[newIndex];
+
+        // Hide old
+        gsap.to(oldImage, {
+            opacity: 0,
+            scale: 1.1,
+            duration: 0.6,
+            ease: 'power2.inOut',
+            onComplete: () => {
+                oldImage.style.zIndex = '1';
+                oldImage.classList.remove('active');
             }
         });
 
-        // Fade in target image
-        if (targetImage) {
-            gsap.to(targetImage, {
-                opacity: 1,
-                scale: 1,
-                zIndex: 10,
-                duration: 0.8,
-                ease: 'power2.out'
-            });
-            targetImage.classList.add('active');
-        }
+        // Show new
+        newImage.style.zIndex = '10';
+        gsap.to(newImage, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power2.out'
+        });
+        newImage.classList.add('active');
+
+        currentImageIndex = newIndex;
     }
 
     // Create scroll triggers for each panel
     panels.forEach((panel, index) => {
-        const imageNum = panel.dataset.image;
-        const targetImage = document.getElementById(`pinnedImg${imageNum}`);
-
         ScrollTrigger.create({
             trigger: panel,
-            start: 'top 60%',
-            end: 'bottom 40%',
+            start: 'top center',
+            end: 'bottom center',
             onEnter: () => {
-                // Remove active from all panels
                 panels.forEach(p => p.classList.remove('active'));
                 panel.classList.add('active');
-
-                // Switch image
-                switchToImage(targetImage, index);
+                switchToImage(index);
             },
             onEnterBack: () => {
-                // Remove active from all panels
                 panels.forEach(p => p.classList.remove('active'));
                 panel.classList.add('active');
-
-                // Switch image
-                switchToImage(targetImage, index);
+                switchToImage(index);
             }
         });
     });
@@ -1570,3 +1577,59 @@ setInterval(() => {
         });
     });
 }, 5000);
+
+// ============================================
+// BACKGROUND MUSIC
+// ============================================
+
+(function initMusic() {
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+
+    if (!musicBtn || !bgMusic) return;
+
+    const iconOn = musicBtn.querySelector('.music-icon-on');
+    const iconOff = musicBtn.querySelector('.music-icon-off');
+    let isPlaying = false;
+
+    bgMusic.volume = 0.3;
+
+    function toggleMusic() {
+        if (isPlaying) {
+            bgMusic.pause();
+            musicBtn.classList.remove('playing');
+            iconOn.style.display = 'none';
+            iconOff.style.display = 'block';
+        } else {
+            bgMusic.play().then(() => {
+                musicBtn.classList.add('playing');
+                iconOn.style.display = 'block';
+                iconOff.style.display = 'none';
+            }).catch(() => {
+                // Autoplay blocked - will play on next click
+            });
+        }
+        isPlaying = !isPlaying;
+    }
+
+    musicBtn.addEventListener('click', toggleMusic);
+
+    // Try to autoplay when user first interacts with the page
+    function autoplayOnInteraction() {
+        if (!isPlaying) {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicBtn.classList.add('playing');
+                iconOn.style.display = 'block';
+                iconOff.style.display = 'none';
+            }).catch(() => {});
+        }
+        document.removeEventListener('click', autoplayOnInteraction);
+        document.removeEventListener('scroll', autoplayOnInteraction);
+        document.removeEventListener('touchstart', autoplayOnInteraction);
+    }
+
+    document.addEventListener('click', autoplayOnInteraction);
+    document.addEventListener('scroll', autoplayOnInteraction);
+    document.addEventListener('touchstart', autoplayOnInteraction);
+})();

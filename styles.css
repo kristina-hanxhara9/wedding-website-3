@@ -2141,6 +2141,67 @@ select.form-input {
 }
 
 /* ============================================
+   MUSIC BUTTON
+   ============================================ */
+
+.music-btn {
+    position: fixed;
+    left: 2rem;
+    bottom: 5rem;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    color: var(--color-primary);
+    border: 1px solid rgba(124, 82, 149, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.music-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 6px 25px rgba(124, 82, 149, 0.4);
+}
+
+.music-btn.playing {
+    animation: musicPulse 1.5s ease-in-out infinite;
+    background: var(--color-primary);
+    color: white;
+}
+
+@keyframes musicPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(124, 82, 149, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(124, 82, 149, 0); }
+}
+
+@media (max-width: 768px) {
+    .music-btn {
+        left: 1rem;
+        bottom: 4.5rem;
+        width: 42px;
+        height: 42px;
+    }
+
+    .music-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ============================================
    WHATSAPP BUTTON
    ============================================ */
 

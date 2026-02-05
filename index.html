@@ -634,6 +634,26 @@
         </svg>
     </a>
 
+    <!-- Background Music -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music/wedding-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button class="music-btn" id="musicBtn" aria-label="Toggle Music">
+        <svg class="music-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </svg>
+        <svg class="music-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+            <line x1="1" y1="1" x2="23" y2="23" stroke-width="2.5"/>
+        </svg>
+    </button>
+
     <!-- Cursor Follower (Desktop) -->
     <div class="cursor-follower" id="cursorFollower">
         <div class="cursor-dot"></div>
