@@ -981,101 +981,72 @@ function initHorizontalScrollSection() {
     const progressBar = document.getElementById('scrollProgressBar');
     const progressContainer = document.querySelector('.scroll-progress');
 
-    if (!section || !panels.length) return;
-
-    console.log('Horizontal scroll init: Found', pinnedImages.length, 'images and', panels.length, 'panels');
-
-    // Verify images loaded
-    pinnedImages.forEach((img, i) => {
-        console.log('Image', i, ':', img.src, 'naturalWidth:', img.naturalWidth);
-    });
+    if (!section || !panels.length || !pinnedImages.length) return;
 
     // Track current active image index
     let currentImageIndex = 0;
 
-    // Use GSAP.set for initial state (no CSS transitions to conflict)
+    // Set initial state: first image visible, rest hidden
     pinnedImages.forEach((img, i) => {
-        // Kill any existing GSAP tweens on this element
-        gsap.killTweensOf(img);
-
         if (i === 0) {
-            gsap.set(img, {
-                opacity: 1,
-                scale: 1,
-                zIndex: 10
-            });
+            img.style.opacity = '1';
+            img.style.zIndex = '10';
         } else {
-            gsap.set(img, {
-                opacity: 0,
-                scale: 1.05,
-                zIndex: 1
-            });
+            img.style.opacity = '0';
+            img.style.zIndex = '1';
         }
     });
 
     panels[0].classList.add('active');
 
-    // Function to switch images with GSAP only
+    // Reliable image switch using direct style manipulation
     function switchToImage(newIndex) {
         if (newIndex === currentImageIndex) return;
         if (newIndex < 0 || newIndex >= pinnedImages.length) return;
 
-        console.log('Switching image from', currentImageIndex, 'to', newIndex);
-
-        // Kill any running tweens on ALL images to prevent conflicts
-        pinnedImages.forEach(img => gsap.killTweensOf(img));
-
-        const oldImage = pinnedImages[currentImageIndex];
-        const newImage = pinnedImages[newIndex];
-
-        // Set new image on top immediately
-        gsap.set(newImage, { zIndex: 10 });
-        gsap.set(oldImage, { zIndex: 5 });
-
-        // Fade out old image
-        gsap.to(oldImage, {
-            opacity: 0,
-            scale: 1.05,
-            duration: 0.6,
-            ease: 'power2.inOut',
-            onComplete: () => {
-                gsap.set(oldImage, { zIndex: 1 });
-            }
+        // Hide ALL images first
+        pinnedImages.forEach((img, i) => {
+            img.style.opacity = '0';
+            img.style.zIndex = '1';
         });
 
-        // Fade in new image
-        gsap.to(newImage, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: 'power2.out'
-        });
+        // Show the target image
+        pinnedImages[newIndex].style.opacity = '1';
+        pinnedImages[newIndex].style.zIndex = '10';
 
         currentImageIndex = newIndex;
     }
 
-    // Create scroll triggers for each panel
-    panels.forEach((panel, index) => {
-        ScrollTrigger.create({
-            trigger: panel,
-            start: 'top center',
-            end: 'bottom center',
-            onEnter: () => {
-                console.log('Panel', index, 'entered');
+    // Use IntersectionObserver instead of ScrollTrigger for reliability
+    // This works regardless of sticky positioning, Lenis, or layout mode
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '-40% 0px -40% 0px', // trigger when panel is in the middle 20% of viewport
+        threshold: 0
+    };
+
+    const panelObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const panel = entry.target;
+                const index = Array.from(panels).indexOf(panel);
+
+                // Activate panel
                 panels.forEach(p => p.classList.remove('active'));
                 panel.classList.add('active');
-                switchToImage(index);
-            },
-            onEnterBack: () => {
-                console.log('Panel', index, 'entered back');
-                panels.forEach(p => p.classList.remove('active'));
-                panel.classList.add('active');
+
+                // Switch image
                 switchToImage(index);
             }
         });
+    }, observerOptions);
+
+    // Observe all panels
+    panels.forEach(panel => {
+        panelObserver.observe(panel);
     });
 
-    // Progress bar animation
+    // Progress bar animation (keep using ScrollTrigger for this)
     if (progressContainer) {
         ScrollTrigger.create({
             trigger: section,
@@ -1118,9 +1089,6 @@ function initHorizontalScrollSection() {
             );
         }
     });
-
-    // NOTE: Removed parallax effect on pinned images - it was overwriting
-    // opacity and transform via scrubbed animation, preventing image switching
 }
 
 // ============================================
