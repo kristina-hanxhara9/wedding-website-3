@@ -1247,67 +1247,66 @@ button {
 
 .quote-section {
     position: relative;
-    min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: var(--color-primary-dark);
+    padding: clamp(4rem, 8vw, 8rem) var(--container-padding);
 }
 
-.quote-video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Centered video container — keeps natural aspect ratio */
+.quote-video-centered {
+    position: relative;
     width: 100%;
-    height: 100%;
+    max-width: 900px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-.quote-video-bg video {
+.quote-video-centered video {
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     pointer-events: none;
 }
 
-.quote-video-bg video::-webkit-media-controls {
+.quote-video-centered video::-webkit-media-controls {
     display: none !important;
 }
 
-.quote-section .parallax-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%;
-}
-
-.quote-section .parallax-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.quote-overlay {
+/* Soft dark overlay so text is readable */
+.quote-video-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
 }
 
+/* Text sits on top of the video */
 .quote-content {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    max-width: 800px;
-    padding: 4rem var(--container-padding);
+    padding: clamp(2rem, 4vw, 4rem);
     color: var(--color-white);
 }
 
 .quote-ornament {
     font-family: var(--font-serif);
-    font-size: 5rem;
+    font-size: clamp(3rem, 5vw, 5rem);
     color: var(--color-accent);
     line-height: 1;
     margin-bottom: 1rem;
@@ -1316,17 +1315,20 @@ button {
 
 .quote-text {
     font-family: var(--font-serif);
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
     font-style: italic;
     font-weight: 300;
     line-height: 1.6;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    max-width: 650px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .quote-author {
     font-size: 0.9rem;
     letter-spacing: 0.15em;
     opacity: 0.8;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ============================================
