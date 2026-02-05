@@ -714,6 +714,7 @@ button {
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .pinned-img {
@@ -723,17 +724,7 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
-    transform: scale(1.1);
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1;
-}
-
-.pinned-img.active {
-    opacity: 1;
-    transform: scale(1);
-    z-index: 10;
+    /* No CSS transitions - let GSAP handle all animations to avoid conflicts */
 }
 
 /* Scrolling Text Panels Side */
