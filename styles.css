@@ -2803,6 +2803,15 @@ select.form-input {
         bottom: 1rem;
     }
 
+    /* Hero Video Mobile */
+    .hero-video-wrapper {
+        top: 2%;
+        left: 2%;
+        width: 96%;
+        height: 96%;
+        border-radius: 12px;
+    }
+
     /* Gift Section Mobile */
     .gift-bank-row {
         flex-direction: column;
@@ -2819,8 +2828,17 @@ select.form-input {
     }
 
     /* Quote Section Mobile */
+    .quote-section {
+        min-height: 50vh;
+    }
+
     .quote-text {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .quote-ornament {
+        font-size: 2.5rem;
     }
 
     /* Intro Section Mobile */
@@ -2834,6 +2852,14 @@ select.form-input {
     }
 
     /* Photo Story Mobile */
+    .photo-story-panel {
+        min-height: auto;
+    }
+
+    .photo-story-image {
+        height: 40vh;
+    }
+
     .photo-story-title {
         font-size: 1.5rem;
     }
@@ -2841,15 +2867,41 @@ select.form-input {
     .photo-story-number {
         font-size: 2.5rem;
     }
+
+    .photo-story-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .photo-story-content::before {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
+    .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+    }
+
+    .hero-video-wrapper {
+        top: 1.5%;
+        left: 1.5%;
+        width: 97%;
+        height: 97%;
+        border-radius: 10px;
+    }
+
     .hero-name {
         font-size: 2.5rem;
     }
 
     .hero-ampersand {
         font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 0.15em;
     }
 
     .section-title {
@@ -2863,6 +2915,37 @@ select.form-input {
     .rsvp-submit {
         width: 100%;
         justify-content: center;
+    }
+
+    /* Photo Story Small Mobile */
+    .photo-story-image {
+        height: 35vh;
+    }
+
+    .photo-story-title {
+        font-size: 1.3rem;
+    }
+
+    .photo-story-text {
+        font-size: 0.95rem;
+    }
+
+    .photo-story-number {
+        font-size: 2rem;
+    }
+
+    /* Quote Small Mobile */
+    .quote-section {
+        min-height: 40vh;
+    }
+
+    .quote-text {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .quote-author {
+        font-size: 0.8rem;
     }
 
     /* Gift Section Small Mobile */
@@ -2902,6 +2985,10 @@ select.form-input {
     }
 
     /* Venue Mobile */
+    .venue-image-side {
+        min-height: 40vh;
+    }
+
     .venue-content-side {
         padding: 2rem 1.5rem;
     }
@@ -2922,10 +3009,6 @@ select.form-input {
     /* Hero Small Mobile */
     .hero-content {
         padding: 0 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.9rem;
     }
 
     /* Intro Small Mobile */
@@ -2953,18 +3036,31 @@ select.form-input {
 
     /* Buttons positioning */
     .sticky-rsvp {
-        padding: 0.75rem 1rem;
-        font-size: 0.7rem;
+        display: none;
     }
 
     .whatsapp-btn {
         width: 45px;
         height: 45px;
+        right: 1rem;
+        bottom: 1rem;
     }
 
     .whatsapp-btn svg {
         width: 22px;
         height: 22px;
+    }
+
+    .music-btn {
+        left: 1rem;
+        bottom: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .music-btn svg {
+        width: 18px;
+        height: 18px;
     }
 }
 
