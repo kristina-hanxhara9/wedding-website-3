@@ -23,15 +23,9 @@
 <body>
     <!-- Intro Video Overlay (plays before website loads) -->
     <div class="intro-video-overlay" id="introVideoOverlay">
-        <video id="introVideo" playsinline>
+        <video id="introVideo" playsinline autoplay muted>
             <source src="videos/purple.mp4" type="video/mp4">
         </video>
-        <button class="intro-play-btn" id="introPlayBtn">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            <span>Play</span>
-        </button>
         <button class="intro-skip-btn" id="introSkipBtn">Skip</button>
     </div>
 
