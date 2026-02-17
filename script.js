@@ -12,6 +12,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add loading class to body
     document.body.classList.add('loading');
 
+    // Check if intro video should play
+    initIntroVideo();
+});
+
+// ============================================
+// INTRO VIDEO OVERLAY
+// ============================================
+
+function initIntroVideo() {
+    const overlay = document.getElementById('introVideoOverlay');
+    const video = document.getElementById('introVideo');
+    const playBtn = document.getElementById('introPlayBtn');
+    const skipBtn = document.getElementById('introSkipBtn');
+
+    if (!overlay || !video) {
+        // No intro video, proceed to main site
+        initMainSite();
+        return;
+    }
+
+    // Check if video source exists
+    const source = video.querySelector('source');
+    if (!source || !source.src) {
+        overlay.classList.add('hidden');
+        initMainSite();
+        return;
+    }
+
+    // Play button click
+    playBtn.addEventListener('click', () => {
+        overlay.classList.add('playing');
+        video.play();
+    });
+
+    // Skip button click
+    skipBtn.addEventListener('click', () => {
+        video.pause();
+        overlay.classList.add('hidden');
+        initMainSite();
+    });
+
+    // Video ended
+    video.addEventListener('ended', () => {
+        overlay.classList.add('hidden');
+        initMainSite();
+    });
+
+    // Handle video error (file not found)
+    video.addEventListener('error', () => {
+        overlay.classList.add('hidden');
+        initMainSite();
+    });
+}
+
+function initMainSite() {
     // Initialize all modules
     initPreloader();
     initLenisScroll();
@@ -27,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTextRevealMasks();
     initHorizontalScrollSection();
     initGiftSection();
-});
+}
 
 // ============================================
 // PRELOADER

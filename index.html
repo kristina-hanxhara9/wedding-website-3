@@ -21,6 +21,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Intro Video Overlay (plays before website loads) -->
+    <div class="intro-video-overlay" id="introVideoOverlay">
+        <video id="introVideo" playsinline>
+            <source src="videos/intro-video.mp4" type="video/mp4">
+        </video>
+        <button class="intro-play-btn" id="introPlayBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <span>Play</span>
+        </button>
+        <button class="intro-skip-btn" id="introSkipBtn">Skip</button>
+    </div>
+
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
